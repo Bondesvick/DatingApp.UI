@@ -1,0 +1,17 @@
+<div class="container">
+   
+    <div *ngIf="!registerMode" class="info-area">
+        <h1>Find your match</h1>
+        <p>Come on in to view your matches... all you need to do is sign up!</p>
+
+        <div class="button-ares">
+            <button (click)="toggleRegisterMode()" mat-raised-button color="primary">Register</button>
+            <button mat-raised-button>Learn More</button>
+        </div>
+        
+    </div>
+
+    <div *ngIf="registerMode">
+        <app-register (cancelRegister)="cancelRegiterModer($event)"></app-register>
+    </div>
+</div>

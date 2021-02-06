@@ -2,8 +2,9 @@ import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-
-const BASE_URL = 'https://localhost:5001/api/user';
+import { JsonPipe } from '@angular/common';
+import { User } from './_modules/user';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,11 @@ export class AppComponent implements OnInit, OnDestroy{
 
   users: any;
 
-
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private router: Router, private http: HttpClient) {
+  constructor(private accountService: AccountService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
   this._mobileQueryListener = () => changeDetectorRef.detectChanges();
   this.mobileQuery.addListener(this._mobileQueryListener);
@@ -33,22 +33,14 @@ export class AppComponent implements OnInit, OnDestroy{
      {path: "/users", icon: "person", title: "Users"}
     ]
 
-    logOut(){
-      this.router.navigateByUrl("/login");
-    }
-
   ngOnInit(): void {
-    this.getUsers();
+    this.setCurrentUser();
   }
 
-  getUsers(){
-    this.http.get(BASE_URL).subscribe(response => {
-      this.users = response;
-    }, error => {
-      console.log(error);
-    });
+  setCurrentUser(){
+    const user: User = JSON.parse(localStorage.getItem('user')!);
+    this.accountService.setCurrentUser(user);
   }
-
 
   ngOnDestroy(): void {}
 }

@@ -1,0 +1,26 @@
+<form #registerForm="ngForm" class="example-form">
+    <h1>Sign up</h1>
+    <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input [(ngModel)]="model.username" matInput placeholder="Username" name="username">
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Favorite User</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let user of usersFromHomeComponent" [value]="user.userName">
+            {{user.userName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field> -->
+    
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input [(ngModel)]="model.password" matInput placeholder="Password" name="password">
+      </mat-form-field>
+
+      <div>
+        <button (click)="register()" mat-raised-button color="primary" type="submit">Register</button>
+        <button (click)="cancel()" mat-raised-button type="reset">Cancel</button>
+      </div>
+</form>

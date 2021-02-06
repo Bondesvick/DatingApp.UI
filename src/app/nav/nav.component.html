@@ -6,49 +6,50 @@
     
     <span>Dating App</span>
 
-    <span class="example-spacer"></span>
-
-    <form id="login-form" #loginForm="ngForm" class="loginform" (ngSubmit)="login()">
+    <span class="example-spacer" ></span>
+    
+    <form *ngIf="(accontService.currentUser$ | async) === null" id="login-form" #loginForm="ngForm" class="loginform" (ngSubmit)="login()" >
 
         <mat-form-field class="field-item" >
           <mat-label>UserName</mat-label>
           <input matInput type="text" [(ngModel)]="model.username"
-          name="username">
+          name="username" required>
         </mat-form-field>
     
         <mat-form-field class="field-item">
             <mat-label>Password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" 
-            [(ngModel)]="model.password" name="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            [(ngModel)]="model.password" name="password" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
     </form>
 
-    <button form="login-form" mat-raised-button color="accent" type="submit" style="margin-right: 5px;">Login</button>
+    <button *ngIf="(accontService.currentUser$ | async) === null" form="login-form" mat-raised-button color="accent" type="submit" style="margin-right: 5px;" >Login</button>
     
       
     <a mat-mini-fab color="accent">
         <mat-icon>person</mat-icon>
     </a>
 
-    <button mat-icon-button color="white" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <button mat-icon-button color="white" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="accontService.currentUser$ | async">
         <mat-icon>more_vert</mat-icon>
     </button>
     
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
+        <a mat-menu-item>Welcome user</a>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon>dialpad</mat-icon>
+            <span>Logout</span>
         </button>
         <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voice mail</span>
         </button>
         <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
         </button>
     </mat-menu>
 

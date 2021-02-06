@@ -1,44 +1,6 @@
 <div class="main" [class.example-is-mobile]="mobileQuery.matches">
 
-  <mat-toolbar color="primary" class="mat-elevation-z8 sticky">
-
-    <button mat-mini-fab color="accent" (click)="snav.toggle()" class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-   
-    <span>My App</span>
-  
-    <span class="example-spacer"></span>
-  
-    <a mat-button routerLink="/">Home</a>
-    <a mat-button routerLink="items">Items</a>
-    <a mat-button routerLink="bookitems">BookItem</a>
-    <a mat-mini-fab color="accent"
-    (click)="logOut()">
-      <mat-icon>person</mat-icon>
-    </a>
-  
-    <button mat-icon-button color="white" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
-      </button>
-      <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voice mail</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>notifications_off</mat-icon>
-        <span>Disable alerts</span>
-      </button>
-    </mat-menu>
-
-  </mat-toolbar>
-
+  <app-nav (toggle)="snav.toggle()"></app-nav>
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 60">
 

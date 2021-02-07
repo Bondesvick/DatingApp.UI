@@ -7,7 +7,7 @@
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
     [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" closed [style.paddingTop.px]="mobileQuery.matches ? 0 : 0" class="navArea">
       <mat-nav-list>
-        
+
         <ng-container *ngIf="accountService.currentUser$ | async">
           <a mat-list-item 
           [routerLink]="nav.path"
@@ -16,6 +16,8 @@
             <mat-icon color="primary">{{nav.icon}}</mat-icon>
             {{nav.title}}
           </a>
+
+          <a  mat-list-item routerLink="errors">Errors</a>
         </ng-container>
 
       </mat-nav-list>

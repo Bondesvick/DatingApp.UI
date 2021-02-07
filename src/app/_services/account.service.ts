@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
-import { User } from '../_modules/user';
+import { User } from '../_models/user';
 
 const BASE_URL = 'https://localhost:5001/api/';
 
@@ -19,7 +19,7 @@ currentUser$ = this.currentUserSource.asObservable();
     return this.http.post<User>(BASE_URL + 'account/login', model).pipe(
       map((response: User) =>{
        const user = response;
-
+        // console.log(user.userName);
         if (user){
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);

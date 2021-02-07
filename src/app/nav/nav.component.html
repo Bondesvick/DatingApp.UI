@@ -1,10 +1,13 @@
 <mat-toolbar color="primary" class="mat-elevation-z8 sticky">
 
-    <button mat-mini-fab color="accent" (click)="toggle.emit()" class="example-icon" aria-label="Example icon-button with menu icon">
+    <button *ngIf="accontService.currentUser$ | async" mat-mini-fab color="accent" (click)="toggle.emit()" class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
     
-    <span>Dating App</span>
+    <span>
+        
+        <a style="text-decoration: none; color: #fff;" routerLink='/'>Dating App</a>
+    </span>
 
     <span class="example-spacer" ></span>
     
@@ -36,21 +39,22 @@
     <button mat-icon-button color="white" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" *ngIf="accontService.currentUser$ | async">
         <mat-icon>more_vert</mat-icon>
     </button>
-    
     <mat-menu #menu="matMenu">
-        <a mat-menu-item>Welcome user</a>
-        <button mat-menu-item (click)="logout()">
-            <mat-icon>dialpad</mat-icon>
-            <span>Logout</span>
-        </button>
-        <button mat-menu-item disabled>
-            <mat-icon>voicemail</mat-icon>
-            <span>Check voice mail</span>
-        </button>
-        <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable alerts</span>
-        </button>
+        <ng-container *ngIf="(accontService.currentUser$ | async) as user">
+            <a mat-menu-item>Welcome {{user.userName | titlecase}}</a>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>dialpad</mat-icon>
+                <span>Logout</span>
+            </button>
+            <button mat-menu-item disabled>
+                <mat-icon>voicemail</mat-icon>
+                <span>Check voice mail</span>
+            </button>
+            <button mat-menu-item>
+                <mat-icon>notifications_off</mat-icon>
+                <span>Disable alerts</span>
+            </button>
+        </ng-container>
     </mat-menu>
 
 </mat-toolbar>

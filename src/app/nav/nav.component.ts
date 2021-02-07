@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { User } from '../_modules/user';
+import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -14,21 +16,30 @@ model: any ={}
 @Output() toggle = new EventEmitter();
 hide = true;
 
-  constructor(public accontService: AccountService) { }
+  constructor(public accontService: AccountService, private router: Router,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
   login(){
     this.accontService.login(this.model).subscribe(response =>{
-      console.log(response)
+      this.router.navigateByUrl('/members');
+      this.openSnackBar("You have logged in")
     }, error =>{
-      console.log(error);
+      this.openSnackBar(error.error);
     })
   }
 
   logout(){
     this.accontService.logout();
+    this.router.navigateByUrl('/');
+    this.openSnackBar("You have logged out")
+  }
+
+  openSnackBar(message: any) {
+    this._snackBar.open(message, 'End now', {
+      duration: 2000
+    });
   }
 
 }

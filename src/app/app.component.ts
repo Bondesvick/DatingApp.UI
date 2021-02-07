@@ -3,7 +3,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
-import { User } from './_modules/user';
+import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
 
 @Component({
@@ -20,17 +20,17 @@ export class AppComponent implements OnInit, OnDestroy{
 
   private _mobileQueryListener: () => void;
 
-  constructor(private accountService: AccountService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(public accountService: AccountService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
   this._mobileQueryListener = () => changeDetectorRef.detectChanges();
   this.mobileQuery.addListener(this._mobileQueryListener);
    }
 
    links =[
-     {path: "/home", icon: "home", title: "Home"},
-     {path: "/items", icon: "view_list", title: "Courses"},
-     {path: "/bookitems", icon: "book", title: "Books"},
-     {path: "/users", icon: "person", title: "Users"}
+     {path: "/", icon: "home", title: "Home"},
+     {path: "/lists", icon: "view_list", title: "Lists"},
+     {path: "/members", icon: "people", title: "Members"},
+     {path: "/messages", icon: "message", title: "Messages"}
     ]
 
   ngOnInit(): void {

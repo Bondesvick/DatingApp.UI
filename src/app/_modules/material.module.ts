@@ -17,7 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRippleModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   exports: [
@@ -39,7 +39,8 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     MatSelectModule,
     MatRippleModule,
     MatSnackBarModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule {}

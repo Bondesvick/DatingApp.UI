@@ -1,8 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { JsonPipe } from '@angular/common';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
 

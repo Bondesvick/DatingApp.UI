@@ -5,7 +5,6 @@
     </button>
     
     <span>
-        
         <a style="text-decoration: none; color: #fff;" routerLink='/'>Dating App</a>
     </span>
 
@@ -42,14 +41,17 @@
     <mat-menu #menu="matMenu">
         <ng-container *ngIf="(accontService.currentUser$ | async) as user">
             <a mat-menu-item>Welcome {{user.userName | titlecase}}</a>
+
+            <button mat-menu-item routerLink='member/edit'>
+                <mat-icon>edit</mat-icon>
+                <span>Edit Profile</span>
+            </button>
+
             <button mat-menu-item (click)="logout()">
-                <mat-icon>dialpad</mat-icon>
+                <mat-icon>logout</mat-icon>
                 <span>Logout</span>
             </button>
-            <button mat-menu-item disabled>
-                <mat-icon>voicemail</mat-icon>
-                <span>Check voice mail</span>
-            </button>
+            
             <button mat-menu-item>
                 <mat-icon>notifications_off</mat-icon>
                 <span>Disable alerts</span>

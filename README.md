@@ -1,5 +1,7 @@
 # DatingApp
 
+![banner](https://raw.githubusercontent.com/Bondesvick/DatingApp.UI/main/src/assets/banner.png?token=AM5L2DKTQO6OW767AVUUKXDAFQEEO)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.3.
 
 ## Development server

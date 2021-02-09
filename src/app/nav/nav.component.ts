@@ -18,6 +18,7 @@ model: any ={}
 
 @Output() toggle = new EventEmitter();
 hide = true;
+//user!: User;
 
   constructor(public accontService: AccountService, private router: Router,private snackBarService: SnackBarService) { }
 

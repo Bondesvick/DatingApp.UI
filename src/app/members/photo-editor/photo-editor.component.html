@@ -1,0 +1,104 @@
+<div  class="row mt-3" style="display: flex; flex-wrap: wrap;">
+
+        <div class="col-md-3" style="flex: 1 1;">
+ 
+            <h3>Add Photos</h3>
+ 
+            <mat-card ng2FileDrop
+                 [ngClass]="{'nv-file-over': hasBaseDropzoneOver}"
+                 (fileOver)="fileOverBase($event)"
+                 [uploader]="uploader"
+                 style="height: 150px; width: 150px; display: flex; flex-direction: column;">
+                 <mat-icon>upload</mat-icon>
+                <p>Drag and drop photos here</p>
+            </mat-card>
+            
+                Multiple
+                <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br/>
+     
+                Single
+                <input type="file" ng2FileSelect [uploader]="uploader" />
+        </div>
+       
+        <div class="col-md-9" style="margin-bottom: 40px; flex: 3 3" *ngIf="uploader?.queue?.length">
+ 
+            <h3>Upload queue</h3>
+            <p>Queue length: {{ uploader?.queue?.length }}</p>
+ 
+            <table class="mat-elevation-z8">
+                
+                <thead>
+                    <tr style="height: 50px; border-bottom: red 2px solid;">
+                        <th width="50%">Name</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of uploader.queue" style="height: 50px;">
+                    <td><strong>{{ item?.file?.name }}</strong></td>
+                    <td *ngIf="uploader.options.isHTML5" >{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                    
+                </tr>
+                </tbody>
+            </table>
+ 
+            <div>
+                <div>
+                    <br>
+                    Queue progress:
+
+                    <mat-progress-spinner
+                        [value]="uploader.progress">
+                    </mat-progress-spinner>
+
+                    <!-- <div class="progress" style="width: 100%; background-color: red; width: 40px;">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                    </div> -->
+                </div>
+                <button color="primary" mat-raised-button style="margin: 2px;"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                        <mat-icon>upload</mat-icon>
+                     Upload all
+                </button>
+                <button color="" mat-raised-button style="margin: 2px;"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                        <mat-icon>cancel</mat-icon>
+                        Cancel all
+                </button>
+                <button color="warn" mat-raised-button style="margin: 2px;"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                        <mat-icon>delete</mat-icon> Remove all
+                </button>
+            </div>
+ 
+        </div>
+</div>
+
+<div class="main">
+
+    <div *ngFor="let photo of member?.photos" class="example-card">
+        <mat-card>
+            <mat-card-header>
+                
+            </mat-card-header>
+            <img mat-card-image src="{{photo.url}}" alt="{{photo.url}}">
+            <mat-card-content>
+                
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button 
+                [disabled]="photo.isMain"
+                (click)="setMainPhoto(photo)"
+                [color]='photo.isMain ? "primary" : "secondary"'>
+                    Main
+                </button>
+                <button mat-icon-button color="warn"
+                [disabled]="photo.isMain"
+                (click)="deletePhoto(photo.id)">
+                    <mat-icon>delete</mat-icon>
+                    
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Photo } from '../_models/photo';
 import { User } from '../_models/user';
 
 //const BASE_URL = 'https://localhost:5001/api/';
@@ -24,8 +25,7 @@ currentUser$ = this.currentUserSource.asObservable();
        const user = response;
         // console.log(user.userName);
         if (user){
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
         }
       })
     );
@@ -35,15 +35,26 @@ currentUser$ = this.currentUserSource.asObservable();
     return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
       map((user: User) => {
         if(user){
-          localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSource.next(user);
+          this.setCurrentUser(user);
         }
         return user;
       })
     )
   }
 
+  // uploadPhoto(model: any){
+  //   return this.http.post<Photo>(this.baseUrl + 'users/add-photo', model).pipe(
+  //     map((photo: Photo) => {
+  //       // if(photo){
+  //       //   const a = JSON.stringify(photo);
+  //       // }
+  //       return photo;
+  //     })
+  //   )
+  // }
+
   setCurrentUser(user: User){
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user)
   }
 

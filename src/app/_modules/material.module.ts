@@ -18,6 +18,8 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   exports: [
@@ -40,7 +42,9 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatRippleModule,
     MatSnackBarModule,
     MatBottomSheetModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressBarModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}

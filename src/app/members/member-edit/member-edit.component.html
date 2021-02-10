@@ -9,7 +9,7 @@
         <mat-card-title>{{member.userName}}</mat-card-title>
         <mat-card-subtitle>{{member.city}}, {{member.country}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="{{member.photoUrl}}" alt="Photo of a Shiba Inu">
+      <img mat-card-image src="{{member.photoUrl || '/assets/profile.png'}}" alt="Photo of a Shiba Inu">
 
       <mat-card-content>
         <span>Age: </span><span>{{member.age}}</span>

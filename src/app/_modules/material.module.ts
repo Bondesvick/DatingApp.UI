@@ -14,12 +14,14 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTableModule} from '@angular/material/table';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   exports: [
@@ -44,7 +46,10 @@ import {MatTableModule} from '@angular/material/table';
     MatBottomSheetModule,
     MatTabsModule,
     MatProgressBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule {}

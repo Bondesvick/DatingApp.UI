@@ -34,7 +34,7 @@
       
     <div class="mat-elevation-z8" style="height: 50px; width: 50px; overflow: hidden; border-radius: 50%;" *ngIf="(accontService.currentUser$ | async) as user">
         <!-- <mat-icon>person</mat-icon> -->
-        <img src="{{user.photoUrl}}" alt="{{user.userName}}" style="height: 100%; width: 100%;">
+        <img src="{{user.photoUrl || '/assets/profile.png'}}" alt="{{user.userName}}" style="height: 100%; width: 100%;">
     </div>
 
     <button style="outline: none;" mat-icon-button color="white" [matMenuTriggerFor]="menu" *ngIf="accontService.currentUser$ | async">

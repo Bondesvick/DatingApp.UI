@@ -26,7 +26,7 @@ validationErrors: string[] = [];
     this.initializeForm();
     const currentYear = new Date().getFullYear();
     this.minDate = new Date(currentYear - 18, 0, 1);
-    this.maxDate = new Date(currentYear + 18, 0, 1);
+    this.maxDate = new Date(currentYear - 18, 12, 0);
   }
 
   initializeForm(){

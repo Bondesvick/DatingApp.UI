@@ -5,7 +5,7 @@ import { SuccessBarComponent } from '../_snackbars/success-bar/success-bar.compo
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class SnackBarService {
   horizontalPosition: MatSnackBarHorizontalPosition = 'start';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';

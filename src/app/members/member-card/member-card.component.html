@@ -5,9 +5,14 @@
     </div>
     <mat-card-title>{{member.nickName}}</mat-card-title>
     <mat-card-subtitle>{{member.city}}</mat-card-subtitle>
+    <mat-chip-list aria-label="Fish selection">
+    
+      <mat-chip color="accent" selected>Age: {{member.age}}</mat-chip>
+    </mat-chip-list>
+    <!-- <span>Age: {{member.age}}</span> -->
   </mat-card-header>
   
-  <img mat-card-image src="{{member.photoUrl || '/assets/profile.png'}}" alt="{{member.nickName}}">
+  <img mat-card-image src="{{member.photoUrl || '/assets/ugo.jpg'}}" alt="{{member.nickName}}">
   <mat-card-content>
     <p>
       {{member.introduction?.substring(0,50)}}...

@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
           return true;
         }
         this._snackBar.open('You shall not pass!!!', 'End now', {
-          duration: 2000});
+          duration: 5000});
         return false
       })
     )

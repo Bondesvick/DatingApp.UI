@@ -9,19 +9,19 @@
         <mat-card-title>{{member.userName}}</mat-card-title>
         <mat-card-subtitle>{{member.city}}, {{member.country}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="{{member.photoUrl}}" alt="Photo of a Shiba Inu">
+      <img mat-card-image src="{{member.photoUrl || '/assets/ugo.jpg'}}" alt="Photo of a Shiba Inu">
 
       <mat-card-content>
         <span>Age: </span><span>{{member.age}}</span>
       </mat-card-content>
         
         <mat-card-content>
-        <span bold>Member Since: </span><span>{{member.lastActive}}</span>
+        <span bold>Member Since: </span><span>{{member.lastActive | date}}</span>
         </mat-card-content>
 
         
       <mat-card-content>
-          <span>Last Active: </span><span>{{member.lastActive}}</span>
+          <span>Last Active: </span><span>{{member.lastActive | date}}</span>
       </mat-card-content>
 
       <mat-card-actions>

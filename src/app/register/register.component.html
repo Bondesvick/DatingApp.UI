@@ -1,9 +1,68 @@
-<form #registerForm="ngForm" class="example-form">
+<form [formGroup]='registerForm' (ngSubmit)='registerForm.valid && register()' class="example-form">
     <h1>Sign up</h1>
     <mat-form-field class="example-full-width">
         <mat-label>Username</mat-label>
-        <input [(ngModel)]="model.username" matInput placeholder="Username" name="username">
+        <input
+         matInput
+         type="text"
+         placeholder="Username"
+         formControlName="userName">
+         <mat-error *ngIf="registerForm.invalid">Please enter a username</mat-error>
       </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Nick Name</mat-label>
+        <input
+         matInput
+         type="text"
+         placeholder="NickName"
+         formControlName="nickName">
+         <mat-error *ngIf="registerForm.invalid">Please enter a Nick name</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>City</mat-label>
+        <input
+         matInput
+         type="text"
+         placeholder="City"
+         formControlName="city">
+         <mat-error *ngIf="registerForm.invalid">Please enter your City</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Country</mat-label>
+        <input
+         matInput
+         type="text"
+         placeholder="Country"
+         formControlName="country">
+         <mat-error *ngIf="registerForm.invalid">Please enter your Country</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Date Of birth</mat-label>
+        <input 
+          matInput
+          [max]="maxDate"
+          type="text"
+          [matDatepicker]="picker" 
+          formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="registerForm.invalid">Please select your birth date</mat-error>
+      </mat-form-field>
+
+        <mat-label>Gender</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="gender">
+          <mat-radio-button value="male">Male</mat-radio-button>
+          <mat-radio-button value="female">Female</mat-radio-button>
+        </mat-radio-group>
+      
+      <!-- <app-text-imput 
+        [formControl]='registerForm.controls["username"]'
+        [label]='"Username"'>
+      </app-text-imput> -->
 
       <!-- <mat-form-field appearance="fill">
         <mat-label>Favorite User</mat-label>
@@ -16,11 +75,56 @@
     
       <mat-form-field class="example-full-width">
         <mat-label>Password</mat-label>
-        <input [(ngModel)]="model.password" matInput placeholder="Password" name="password">
+        <input
+         matInput
+         [type]="hide ? 'password' : 'text'"
+         placeholder="Password"
+          formControlName="password"
+          >
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          <mat-error *ngIf="registerForm.invalid">Pasword must be at least 4 characters and at most 8 characters</mat-error>
       </mat-form-field>
 
+      <!-- <app-text-imput 
+        [formControl]='registerForm.controls["password"]'
+        [label]='"Password"'
+        [type]='"password"'>
+      </app-text-imput> -->
+
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input 
+         matInput
+         type="password" 
+         placeholder="Confirm Password" 
+         formControlName="confirmPassword">
+        <mat-error *ngIf="registerForm.invalid">Passwords do not match </mat-error>
+      </mat-form-field>
+
+      <!-- <app-text-imput 
+        [formControl]='registerForm.controls["confirmPassword"]'
+        [label]='"Confirm Password"'
+        [type]='"password"'>
+      </app-text-imput> -->
+
+      <!-- <div *ngIf="registerForm.get('password').hasError">gftf</div> -->
+
+      <div *ngIf="validationErrors.length > 0">
+        <ul>
+            <li *ngFor="let error of validationErrors">
+                {{error}}
+            </li>
+        </ul>
+      </div>
+
       <div>
-        <button (click)="register()" mat-raised-button color="primary" type="submit" class="btn">Register</button>
+        <button mat-raised-button color="primary" type="submit" class="btn" [disabled]="!registerForm.valid">Register</button>
         <button (click)="cancel()" mat-raised-button type="reset" class="btn">Cancel</button>
       </div>
 </form>
+
+<!-- <p>Form value: {{registerForm.value | json}}</p>
+<p>Form value: {{registerForm.status | json}}</p> -->

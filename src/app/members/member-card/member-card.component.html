@@ -20,7 +20,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button style="outline: none;" routerLink='/members/{{member.userName}}' mat-icon-button mat-icon-button><mat-icon>person</mat-icon></button>
-    <button style="outline: none;" mat-icon-button><mat-icon>favorite</mat-icon></button>
+    <button (click)="addLike(member)" color="primary" style="outline: none;" mat-icon-button><mat-icon>favorite</mat-icon></button>
     <button style="outline: none;" mat-icon-button> <mat-icon>message</mat-icon></button>
   </mat-card-actions>
 </mat-card>

@@ -27,7 +27,7 @@
           <button mat-raised-button color="primary" type="submit" class="example-full-width">Apply Filters</button>
           <button (click)="resetFilters()" mat-raised-button color="accent" class="example-full-width">Reset Filters</button>
 
-          <div>
+          <!-- <div>
               <button
               mat-raised-button
               type="button"
@@ -47,7 +47,22 @@
               [(ngModel)]="userParams.orderBy">
                   Newest Members
               </button>
-          </div>
+          </div> -->
+
+          <mat-radio-group aria-label="Select an option" [(ngModel)]="userParams.orderBy"
+          [ngModelOptions]="{standalone: true}">
+
+            <mat-radio-button color="primary" value="lastActive" (change)="filterOder('lastActive')">
+              Last Active
+            </mat-radio-button>
+    
+             <small style="width: 5px; margin: 5px;"></small>
+    
+            <mat-radio-button color="primary" value="created" (change)="filterOder('created')" >
+              Newest Members
+            </mat-radio-button>
+    
+        </mat-radio-group>
 
           <!-- <section class="example-section">
             <mat-checkbox name="lastActive" value="lastActive" (change)="loadMembers()" [(ngModel)]="userParams.orderBy">Last Active</mat-checkbox>

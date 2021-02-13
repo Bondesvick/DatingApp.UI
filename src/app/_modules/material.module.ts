@@ -24,6 +24,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 @NgModule({
   exports: [
@@ -53,7 +56,9 @@ import {MatChipsModule} from '@angular/material/chips';
     MatRadioModule,
     MatNativeDateModule,
     MatPaginatorModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonToggleModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule {}

@@ -1,1 +1,94 @@
-<p>messages works!</p>
+<div style="min-height: 80vh; display: flex; flex-direction: column; align-items: center;">
+
+    <!-- <p *ngFor="let message of messages">{{message?.content}}</p> -->
+
+    <div style="margin-top: 10px;">
+        
+        <mat-button-toggle-group name="container" aria-label="Font Style" [(ngModel)]="container">
+        <mat-button-toggle (change)="filterMessages('Unread')" value="Unread">
+            <mat-icon>mark_email_unread</mat-icon>
+            Unread
+        </mat-button-toggle>
+        <mat-button-toggle (change)="filterMessages('Inbox')" value="Inbox">
+            <mat-icon>mark_email_read</mat-icon>
+            Inbox
+        </mat-button-toggle>
+        <mat-button-toggle (change)="filterMessages('Outbox')" value="Outbox">
+            <mat-icon>forward_to_inbox</mat-icon>
+            Outbox
+        </mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div *ngIf="messages?.length === 0">
+        <h3>No Messages</h3>
+    </div>
+
+    <div>
+        <table mat-table [dataSource]="messages" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="content">
+              <th mat-header-cell *matHeaderCellDef> Message </th>
+              <td mat-cell *matCellDef="let element"
+              > {{element.content}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> From / To </th>
+              <td mat-cell *matCellDef="let element">
+                    <div *ngIf="container === 'Outbox'" class="tableProf">
+                        <img
+                        style="border-radius: 50%; height: 40px; width: 40px;"
+                         src="{{element.recipientPhotoUrl || './assets/ugo.jpg'}}"
+                        alt="{{element.recipientUserName}}">
+                        <strong class="tableInfo">{{element.recipientUserName | titlecase}}</strong>
+                    </div>
+
+                    <div *ngIf="container !== 'Outbox'" class="tableProf">
+                        <img
+                        style="border-radius: 50%; height: 40px; width: 40px;"
+                         src="{{element.senderPhotoUrl || './assets/ugo.jpg'}}"
+                        alt="{{element.senderUserName}}">
+                        <strong class="tableInfo">{{element.senderUserName | titlecase}}</strong>
+                    </div>
+              </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="time">
+              <th mat-header-cell *matHeaderCellDef>Sent / Received </th>
+              <td mat-cell *matCellDef="let element"> {{element.messageSent | date}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="warn"
+                (click)="deleteMessage(element.id); $event.stopImmediatePropagation()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr [hidden]="loading" mat-row *matRowDef="let row; columns: displayedColumns;"
+            routerLink="{{container === 'Outbox'
+                ? '/members/' + row.recipientUserName
+                : '/members/' + row.senderUserName}}"
+                [queryParams]='{tab: 3}'></tr>
+          </table>
+    </div>
+
+</div>
+
+<mat-paginator *ngIf="pagination && !loading" [length]="totalItems"
+[pageSize]="pageSize"
+[pageSizeOptions]="[5, 10, 15, 20, 25, 30, 100]"
+(page)="pageChanged($event)">
+</mat-paginator> 

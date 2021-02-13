@@ -1,0 +1,22 @@
+.example-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+    .formfield{
+        flex: 1 1;
+        width: 400px;
+        min-height: 80px;
+    }
+
+    button{
+        flex: 1 1;
+        height: 50px;
+        margin: 5px;
+    }
+}
+
+ul {
+    list-style-type: none;
+}

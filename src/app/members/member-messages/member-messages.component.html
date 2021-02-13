@@ -1,0 +1,73 @@
+<!-- <p *ngFor="let message of messages">
+  {{message.content}}
+</p> -->
+
+<div style="max-width: 700px;">
+  <div>
+    <div *ngIf="messages.length === 0">
+      No messages yet... say hi by using the message box below
+    </div>
+
+    <mat-list *ngIf="messages.length > 0">
+      <mat-divider></mat-divider>
+      <mat-list-item *ngFor="let message of messages"
+      matRipple
+            
+            role="listitem"
+            style="height: 70px;">
+
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+
+          <div>
+            <div>
+              <small>
+                <span>{{message.messageSent | timeago}}</span>
+                <span style="color: red;" *ngIf="!message.dateRead 
+                ">
+                  (unread)
+                </span>
+                <span style="color: green;" *ngIf="message.dateRead 
+                ">
+                  (read {{message.dateRead | timeago}})
+                </span>
+              </small>
+            </div>
+            <p style="font-size: 1.1rem;">{{message.content}}</p>
+          </div>
+
+          <div style="flex: 1 1;"></div>
+
+          <div style="overflow: hidden;">
+            <img style="height: 50px; width: 50px; border-radius: 50%;" src="{{message.senderPhotoUrl || './assets.ugo.jpg'}}" 
+            alt="{{message.senderUserName}}">
+          </div>
+
+        </div>
+
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+  <div class="example-container">
+
+    <form #messageForm="ngForm" (ngSubmit)="sendMessage()">
+      <mat-form-field appearance="fill" class="formfield">
+        <!-- <mat-label>Send a private message</mat-label> -->
+        
+        <textarea name="messageContent" 
+        required
+        [(ngModel)]="messageContent"
+        matInput type="text" placeholder="Send a private message">
+  
+        </textarea>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" [disabled]="messageForm.invalid">
+          <span style="font-size: 1.2rem;">Send</span> <mat-icon style="margin-left: 10px;">send</mat-icon>
+      </button>
+    </form>
+   
+
+  </div>
+</div>

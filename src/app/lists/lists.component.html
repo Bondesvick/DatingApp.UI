@@ -3,19 +3,18 @@
 </div>
 
 <div>
-    <mat-radio-group aria-label="Select an option" [(ngModel)]="predicate">
 
-        <mat-radio-button color="primary" value="liked" (change)="filterLikes('liked')">
+    <mat-button-toggle-group name="predicate" aria-label="Font Style" [(ngModel)]="predicate">
+        <mat-button-toggle (change)="filterLikes('liked')" value="liked">
+            <mat-icon>favorite</mat-icon>
             Members I like
-        </mat-radio-button>
-
-         <small style="width: 5px; margin: 5px;"></small>
-
-        <mat-radio-button color="primary" value="likedBy" (change)="filterLikes('likedBy')" >
+        </mat-button-toggle>
+        <mat-button-toggle (change)="filterLikes('likedBy')" value="likedBy">
+            <mat-icon>people</mat-icon>
             Members who like me
-        </mat-radio-button>
+        </mat-button-toggle>
 
-    </mat-radio-group>
+      </mat-button-toggle-group>
 </div>
 
 <div class="Mycontainer">

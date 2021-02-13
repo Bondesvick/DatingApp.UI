@@ -10,18 +10,18 @@
 
     <span class="example-spacer" ></span>
     
-    <form *ngIf="(accontService.currentUser$ | async) === null" id="login-form" #loginForm="ngForm" class="loginform" (ngSubmit)="login()" >
+    <!-- <form *ngIf="(accontService.currentUser$ | async) === null" id="login-form" #loginForm="ngForm" class="loginform" (ngSubmit)="login()" >
 
         <mat-form-field class="field-item" >
           <mat-label>UserName</mat-label>
-          <input matInput type="text" [(ngModel)]="model.username"
-          name="username" required>
+          <input matInput type="text" [(ngModel)]="model.userName"
+          name="userName" required>
         </mat-form-field>
     
         <mat-form-field class="field-item">
             <mat-label>Password</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" 
-            [(ngModel)]="model.password" name="password" required>
+            [(ngModel)]="model.passWord" name="passWord" required>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button"
             style="outline: none;">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -29,7 +29,9 @@
         </mat-form-field>
     </form>
 
-    <button *ngIf="(accontService.currentUser$ | async) === null" form="login-form" mat-raised-button color="accent" type="submit" style="margin-right: 5px; outline: none;" >Login</button>
+    <button *ngIf="(accontService.currentUser$ | async) === null" form="login-form" mat-raised-button color="accent" type="submit" style="margin-right: 5px; outline: none;" >Login</button> -->
+
+    <button *ngIf="(accontService.currentUser$ | async) === null" mat-raised-button (click)="openDialog()">Login</button>
     
       
     <div class="mat-elevation-z8" style="height: 50px; width: 50px; overflow: hidden; border-radius: 50%;" *ngIf="(accontService.currentUser$ | async) as user">

@@ -1,6 +1,6 @@
 <!-- <h1 *ngIf="member">{{member.nickName}}</h1> -->
 
-<div *ngIf="member" class="main">
+<div class="main">
     <mat-card class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image"></div>
@@ -24,14 +24,14 @@
 
         <mat-card-actions>
           <button color="primary" mat-raised-button>LIKE</button>
-          <button color="accent" mat-raised-button>Message</button>
+          <button (click)="changeTab(3)" color="accent" mat-raised-button>Message</button>
         </mat-card-actions>
 
 
       </mat-card>
 
       <mat-card class="example-card2">
-        <mat-tab-group animationDuration="0ms" color="accent" backgroundColor="primary">
+        <mat-tab-group #tabRef animationDuration="0ms" color="accent" backgroundColor="primary" (selectedIndexChange)="checkTab()">
               <mat-tab label='About {{member.userName}}'>
                 <div class="tab-content">
                     <h4>Description</h4>
@@ -55,18 +55,19 @@
                 <div class="tab-content">
                     <h4>Photos will go here</h4>
                     <ngx-gallery [options]="galleryOptions" [images]="galleryImages"
-                    style="display: inline-block; margin-bottom: 20px;"></ngx-gallery>
+                    style="display: inline-block; margin-bottom: 20px; width: 500px;"></ngx-gallery>
                 </div>
                
             </mat-tab>
 
             <mat-tab label="Messages">
                 <div class="tab-content">
-                    <h4>Messages will go here</h4>
+                    <app-member-messages [messages]="messages" [username]="member.userName"></app-member-messages>
                 </div>
                 
             </mat-tab>
           </mat-tab-group>
       </mat-card>
 
+      <!-- <button (click)="changeTab(1)">Change</button> -->
 </div>

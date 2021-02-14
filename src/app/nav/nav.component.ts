@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { LoginDialogComponent } from '../modals/login-dialog/login-dialog.component';
 import { Login } from '../_models/login';
 import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';

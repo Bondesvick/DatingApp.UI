@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Photo } from '../_models/photo';
 import { User } from '../_models/user';
+import { UserParams } from '../_models/userParams';
 
 //const BASE_URL = 'https://localhost:5001/api/';
 
@@ -53,7 +54,23 @@ currentUser$ = this.currentUserSource.asObservable();
   //   )
   // }
 
+  aUser: User = {
+    userName:"",
+    token: "",
+    photoUrl:"",
+    nickName:"",
+    gender: "",
+    roles: []
+  }
+
   setCurrentUser(user: User){
+
+    //if(user == null) user = this.aUser;
+
+    user.roles = [];
+    
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user)
   }
@@ -61,5 +78,9 @@ currentUser$ = this.currentUserSource.asObservable();
   logout(){
     localStorage.removeItem('user');
     this.currentUserSource.next(null!);
+  }
+
+  getDecodedToken(token: string){
+    return JSON.parse(atob(token.split('.')[1]));
   }
 }

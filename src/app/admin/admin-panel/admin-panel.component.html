@@ -1,0 +1,23 @@
+<h2>Admin Panel</h2>
+
+<mat-card style="padding: 0px;">
+  <mat-tab-group #tabRef animationDuration="0ms" color="accent" backgroundColor="primary">
+    
+    <mat-tab label='User management'>
+      <div class="tab-content">
+        <app-user-management>
+
+        </app-user-management>
+      </div>
+      
+    </mat-tab>
+    
+    <mat-tab label="Photo management">
+      <div class="tab-content">
+        <app-photo-management>
+          
+        </app-photo-management>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

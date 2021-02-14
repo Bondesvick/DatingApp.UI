@@ -28,6 +28,7 @@ tabIndex: number = 0;
 
   ngOnInit(): void {
     //this.loadMember();
+    
 
     this.route.data.subscribe(data => {
       this.member = data.member;

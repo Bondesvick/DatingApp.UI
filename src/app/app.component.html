@@ -13,13 +13,17 @@
       <mat-nav-list>
 
         <ng-container *ngIf="accountService.currentUser$ | async">
-          <a mat-list-item 
-          [routerLink]="nav.path"
-          routerLinkActive="active" 
-          *ngFor="let nav of links">
+          <ng-container *ngFor="let nav of links">
+            <a mat-list-item 
+              [routerLink]="nav.path"
+              routerLinkActive="active" 
+              *appHasRole="nav.roles">
+          
             <mat-icon color="primary">{{nav.icon}}</mat-icon>
             {{nav.title}}
           </a>
+          </ng-container>
+          
 
           <!-- <a  mat-list-item routerLink="errors">Errors</a> -->
         </ng-container>

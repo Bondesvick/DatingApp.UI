@@ -35,7 +35,12 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { TextImputComponent } from './_forms/text-imput/text-imput.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
-import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { LoginDialogComponent } from './modals/login-dialog/login-dialog.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 // import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 
 export class MyIntl extends TimeagoIntl {
@@ -63,6 +68,11 @@ export class MyIntl extends TimeagoIntl {
     TextImputComponent,
     MemberMessagesComponent,
     LoginDialogComponent,
+    HasRoleDirective,
+    AdminPanelComponent,
+    PhotoManagementComponent,
+    UserManagementComponent,
+    RolesModalComponent
 
    ],
   imports: [

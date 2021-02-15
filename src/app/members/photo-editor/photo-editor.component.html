@@ -9,15 +9,19 @@
                  (fileOver)="fileOverBase($event)"
                  [uploader]="uploader"
                  style="height: 150px; width: 150px; display: flex; flex-direction: column;">
-                 <mat-icon>upload</mat-icon>
+                 <mat-icon aria-hidden="false">upload</mat-icon>
                 <p>Drag and drop photos here</p>
             </mat-card>
-            
-                Multiple
-                <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br/>
+
+            <label for="file-upload" class="custom-file-upload">
+                Multiple picture upload
+            </label>
+                <input id="file-upload" type="file" ng2FileSelect [uploader]="uploader" multiple />
      
-                Single
-                <input type="file" ng2FileSelect [uploader]="uploader" />
+                <label for="file-upload2" class="custom-file-upload">
+                    Single Picture upload
+                </label>
+                <input id="file-upload2" type="file" ng2FileSelect [uploader]="uploader" />
         </div>
        
         <div class="col-md-9" style="margin-bottom: 40px; flex: 3 3" *ngIf="uploader?.queue?.length">

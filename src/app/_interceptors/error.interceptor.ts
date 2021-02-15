@@ -31,7 +31,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 throw modalStateErrors.flat();
               }
-              else{
+              else if (typeof(error.error) === 'object'){
+                this._snackBar.openSnackBar(error?.statusText +"  " + error.status,"error");
+              } else{
                 this._snackBar.openSnackBar(error?.error +"  " + error.status,"error");
               }
               break;

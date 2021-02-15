@@ -1,7 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { LoginDialogComponent } from '../modals/login-dialog/login-dialog.component';
+import { Login } from '../_models/login';
 import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 import { SnackBarService } from '../_services/snack-bar.service';
@@ -14,16 +17,26 @@ import { SuccessBarComponent } from '../_snackbars/success-bar/success-bar.compo
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-model: any ={}
+model: Login = {
+  userName: "",
+  passWord: ""
+};
 
 @Output() toggle = new EventEmitter();
 hide = true;
 //user!: User;
 
-  constructor(public accontService: AccountService, private router: Router,private snackBarService: SnackBarService) { }
+  constructor(public dialog: MatDialog, public accontService: AccountService, private router: Router,private snackBarService: SnackBarService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    
   }
+
+  openDialog(): void {
+    this.dialog.open(LoginDialogComponent);
+  }
+  
+  
 
   login(){
     this.accontService.login(this.model).subscribe(response =>{

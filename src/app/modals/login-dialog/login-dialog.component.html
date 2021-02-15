@@ -1,0 +1,28 @@
+
+<h1 mat-dialog-title>Enter your login details</h1>
+<div mat-dialog-content>
+  
+  <form class="example-form" (ngSubmit)="login()"
+   #loginForm="ngForm" id="login-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>User Name</mat-label>
+      <input matInput placeholder="Username" name="userName" type="text"
+      [(ngModel)]="model.userName">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Password" name="password" [type]="hide ? 'password' : 'text'"
+      [(ngModel)]="model.passWord">
+
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button"
+            style="outline: none;">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button mat-dialog-close type="submit" form="login-form">Login</button>
+</div>

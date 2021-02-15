@@ -24,10 +24,11 @@ export class AppComponent implements OnInit, OnDestroy{
    }
 
    links =[
-     {path: "/", icon: "home", title: "Home"},
-     {path: "/lists", icon: "view_list", title: "Lists"},
-     {path: "/members", icon: "people", title: "Members"},
-     {path: "/messages", icon: "message", title: "Messages"}
+     {path: "/", icon: "home", title: "Home", roles: ["Admin","Member"]},
+     {path: "/members", icon: "people", title: "Members", roles: ["Admin","Member"]},
+     {path: "/lists", icon: "view_list", title: "Lists", roles: ["Admin","Member"]},
+     {path: "/messages", icon: "message", title: "Messages", roles: ["Admin","Member"]},
+     {path: "/admin", icon: "admin_panel_settings", title: "Admin", roles: ["Admin","Moderator"]},
     ]
 
   ngOnInit(): void {

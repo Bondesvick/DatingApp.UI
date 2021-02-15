@@ -1,1 +1,31 @@
-<p>lists works!</p>
+<div>
+    <h2>{{predicate === 'liked' ? 'Members I like' : 'Members who like me'}}</h2>
+</div>
+
+<div>
+
+    <mat-button-toggle-group name="predicate" aria-label="Font Style" [(ngModel)]="predicate">
+        <mat-button-toggle (change)="filterLikes('liked')" value="liked">
+            <mat-icon>favorite</mat-icon>
+            Members I like
+        </mat-button-toggle>
+        <mat-button-toggle (change)="filterLikes('likedBy')" value="likedBy">
+            <mat-icon>people</mat-icon>
+            Members who like me
+        </mat-button-toggle>
+
+      </mat-button-toggle-group>
+</div>
+
+<div class="Mycontainer">
+    <div class="Mycard" *ngFor="let member of members">
+        <app-member-card [member]="member!"></app-member-card>
+    </div>
+</div>
+ 
+
+<mat-paginator [length]="totalItems"
+              [pageSize]="pageSize"
+              [pageSizeOptions]="[5, 10, 15, 20, 25, 30, 100]"
+              (page)="pageChanged($event)">
+</mat-paginator> 

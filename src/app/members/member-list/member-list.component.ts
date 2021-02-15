@@ -38,7 +38,7 @@ export class MemberListComponent implements OnInit {
  loadMembers(){
    this.memberService.setUserParams(this.userParams);
    this.memberService.getMembers(this.userParams).subscribe(response => {
-     console.log(response)
+     //console.log(response)
      this.members = response.result;
      this.pagination = response.pagination;
      this.totalItems = response.pagination.totalItems;
@@ -49,6 +49,11 @@ export class MemberListComponent implements OnInit {
    this.userParams = this.memberService.resetUserParams();
    this.userParams.pageNumber = 1;
    this.loadMembers();
+ }
+
+ filterOder(predicate: string){
+   this.userParams.orderBy = predicate;
+   this.loadMembers()
  }
 
  pageChanged(event: PageEvent){

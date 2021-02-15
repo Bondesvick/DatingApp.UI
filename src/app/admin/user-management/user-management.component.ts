@@ -29,8 +29,8 @@ export class UserManagementComponent implements OnInit {
   openDialog(user: any): void {
     //console.log(user);
     const dialogRef = this.dialog.open(RolesModalComponent, {
-      width: '500px',
-      height: '300px',
+      width: '300px',
+      height: '250px',
       data: {userName: user.username, roles: user.roles}
     });
 

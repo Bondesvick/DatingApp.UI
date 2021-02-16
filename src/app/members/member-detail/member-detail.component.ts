@@ -1,18 +1,22 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
 import { Message } from 'src/app/_models/message';
+import { User } from 'src/app/_models/user';
+import { AccountService } from 'src/app/_services/account.service';
 import { MembersService } from 'src/app/_services/members.service';
 import { MessageService } from 'src/app/_services/message.service';
+import { PresenceService } from 'src/app/_services/presence.service';
 
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
   styleUrls: ['./member-detail.component.scss']
 })
-export class MemberDetailComponent implements OnInit {
+export class MemberDetailComponent implements OnInit, OnDestroy {
 @ViewChild(MatTabGroup, {static: true}) matTabGroup!: MatTabGroup;
 tabIndex: number = 0;
 
@@ -22,14 +26,20 @@ tabIndex: number = 0;
   galleryImages: NgxGalleryImage[]  =[];
 
   messages: Message[]= [];
+  user!: User;
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute,
-    private messageService: MessageService) { }
+  constructor(public presence: PresenceService, 
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+    private accountservice: AccountService) { 
+      this.accountservice.currentUser$.pipe(take(1)).subscribe(user => {
+        this.user = user;
+      })
+    }
 
   ngOnInit(): void {
     //this.loadMember();
     
-
     this.route.data.subscribe(data => {
       this.member = data.member;
     });
@@ -89,8 +99,15 @@ tabIndex: number = 0;
     this.tabIndex = this.matTabGroup?.selectedIndex || 0;
 
     if(this.matTabGroup?.selectedIndex === 3 && this.messages.length === 0){
-      this.loadMessages();
+      this.messageService.createHubConnection(this.user,this.member.userName );
+      //this.loadMessages();
+    } else{
+      this.messageService.stopHubConnection();
     }
+  }
+
+  ngOnDestroy(): void {
+    this.messageService.stopHubConnection();
   }
 
 }

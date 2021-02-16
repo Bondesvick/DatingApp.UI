@@ -41,6 +41,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { PresenceService } from './_services/presence.service';
 // import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
 
 export class MyIntl extends TimeagoIntl {
@@ -94,6 +95,7 @@ export class MyIntl extends TimeagoIntl {
     AccountService,
     MembersService,
     SnackBarService,
+    PresenceService,
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}

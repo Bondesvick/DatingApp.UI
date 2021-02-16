@@ -19,8 +19,13 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button style="outline: none;" routerLink='/members/{{member.userName}}' mat-icon-button mat-icon-button><mat-icon>person</mat-icon></button>
+    <button style="outline: none;" 
+    [class.is-online]="(presence.onlineUsers$ | async)?.includes(member.userName)" 
+    routerLink='/members/{{member.userName}}' 
+    mat-icon-button mat-icon-button><mat-icon>person</mat-icon></button>
+
     <button (click)="addLike(member)" [color]='member.liked ? "primary" : "accent"' style="outline: none;" mat-icon-button><mat-icon>favorite</mat-icon></button>
+
     <button style="outline: none;" mat-icon-button routerLink='/members/{{member.userName}}' [queryParams]='{tab: 3}'> 
       <mat-icon>message</mat-icon>
     </button>

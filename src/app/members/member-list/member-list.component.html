@@ -1,8 +1,10 @@
-<mat-chip-list aria-label="Fish selection" style="margin-top: 3px;">
+
+<div style="margin-top: 10px;">
+  <mat-chip-list aria-label="Fish selection">
     
     <mat-chip color="accent" selected>Yours matches - {{pagination?.totalItems}} found</mat-chip>
 </mat-chip-list>
-
+</div>
 <div>
     <form #form="ngForm" (ngSubmit)="loadMembers()" autocomplete="off">
         <mat-form-field class="example-full-width">

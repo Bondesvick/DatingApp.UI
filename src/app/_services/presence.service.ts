@@ -49,7 +49,7 @@ export class PresenceService {
 
     this.hubConnection.on('NewMessageReceived', ({username, NickName}) => {
       console.log("hello")
-      this.snackBar.openSnackBar(NickName + ' has sent you a message!', 'success');
+      this.snackBar.openSnackBar(username + ' has sent you a message!', 'success');
     })
   }
 

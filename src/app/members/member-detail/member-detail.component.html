@@ -22,6 +22,14 @@
             <span>Last Active: </span><span>{{member?.lastActive | timeago}}</span>
         </mat-card-content>
 
+        <mat-card-content style="color: green" *ngIf="(presence.onlineUsers$ | async)?.includes(member.userName)">
+          <div style="display: flex; align-items: center;">
+            <mat-icon>person</mat-icon>
+            <span>online now</span>
+          </div>
+         
+      </mat-card-content>
+
         <mat-card-actions>
           <button color="primary" mat-raised-button>LIKE</button>
           <button (click)="changeTab(3)" color="accent" mat-raised-button>Message</button>
@@ -62,7 +70,9 @@
 
             <mat-tab label="Messages">
                 <div class="tab-content">
-                    <app-member-messages [messages]="messages" [username]="member.userName"></app-member-messages>
+                    <!-- <app-member-messages [messages]="messages" [username]="member.userName"></app-member-messages> -->
+
+                    <app-member-messages [username]="member.userName"></app-member-messages>
                 </div>
                 
             </mat-tab>

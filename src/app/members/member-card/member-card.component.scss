@@ -4,11 +4,21 @@
     
     @media only screen and (max-width: 600px) {
         min-width: 350px;
-        min-height: 600px;
+        min-height: 500px;
     }
 
     .example-header-image {
         background-image: url('https://res.cloudinary.com/bondesvick/image/upload/v1613012933/ugo_qebvrr.jpg');
         background-size: cover;
       }
+  }
+
+  @keyframes fa-blink{
+      0% {opacity: 1;}
+      100% {opacity: 0.4;}
+  }
+
+  .is-online{
+    animation: fa-blink 1.5s linear infinite;
+    color:  rgb(1, 189, 42);
   }

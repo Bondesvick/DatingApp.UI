@@ -1,9 +1,11 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, pipe } from 'rxjs';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { BehaviorSubject, Observable, of, pipe } from 'rxjs';
 import { map, reduce, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
+import { Message } from '../_models/message';
 import { PaginatedResult } from '../_models/pagination';
 import { User } from '../_models/user';
 import { UserParams } from '../_models/userParams';
@@ -20,19 +22,24 @@ import { getPaginatedResult, getPaginationheaders } from './paginationHelper';
   providedIn: 'root'
 })
 export class MembersService {
-
   baseUrl = environment.apiUrl;
+  
+  
   members: Member[] = [];
   memberCache = new Map();
   user!: User;
   userParams!: UserParams;
 
-  constructor(private http: HttpClient, private accountService: AccountService) { 
+  constructor(private http: HttpClient, 
+    private accountService: AccountService) { 
+
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
       this.user = user;
       this.userParams = new UserParams(user);
     })
   }
+
+  
 
   getUserParams(){
     return this.userParams;
@@ -66,7 +73,6 @@ export class MembersService {
       return response;
     }));
   }
-
   
   getMember(username: string){
     // const member = this.members.find(x => x.userName === username);

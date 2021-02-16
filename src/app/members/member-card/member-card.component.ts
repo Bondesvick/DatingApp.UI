@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
+import { PresenceService } from 'src/app/_services/presence.service';
 import { SnackBarService } from 'src/app/_services/snack-bar.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class MemberCardComponent implements OnInit {
 
 @Input() member!: Member;
 
-  constructor(private memberService: MembersService, private snackbar: SnackBarService) { }
+  constructor(private memberService: MembersService, 
+    private snackbar: SnackBarService,
+    public presence: PresenceService) { }
 
   ngOnInit() {
   }

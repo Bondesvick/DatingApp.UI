@@ -4,13 +4,20 @@
 
 <div style="max-width: 700px;">
   <div>
-    <div *ngIf="messages.length === 0">
+    <!-- <div *ngIf="messages.length === 0"> -->
+    <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
       No messages yet... say hi by using the message box below
     </div>
+    <div
+    #scrollMe
+    style="overflow-y: scroll; height: 500px;"
+    [scrollTop]="scrollMe.scrollHeight">
 
-    <mat-list *ngIf="messages.length > 0">
+    
+    <mat-list 
+     *ngIf="(messageService.messageThread$ | async)!.length > 0">
       <mat-divider></mat-divider>
-      <mat-list-item *ngFor="let message of messages"
+      <mat-list-item *ngFor="let message of (messageService.messageThread$ | async)"
       matRipple
             
             role="listitem"
@@ -21,15 +28,19 @@
           <div>
             <div>
               <small>
+
                 <span>{{message.messageSent | timeago}}</span>
+
                 <span style="color: red;" *ngIf="!message.dateRead 
                 ">
                   (unread)
                 </span>
+
                 <span style="color: green;" *ngIf="message.dateRead 
                 ">
                   (read {{message.dateRead | timeago}})
                 </span>
+
               </small>
             </div>
             <p style="font-size: 1.1rem;">{{message.content}}</p>
@@ -48,6 +59,7 @@
       </mat-list-item>
     </mat-list>
   </div>
+  </div>
 
   <div class="example-container">
 
@@ -55,12 +67,12 @@
       <mat-form-field appearance="fill" class="formfield">
         <!-- <mat-label>Send a private message</mat-label> -->
         
-        <textarea name="messageContent" 
+        <input name="messageContent" 
         required
         [(ngModel)]="messageContent"
         matInput type="text" placeholder="Send a private message">
   
-        </textarea>
+        
       </mat-form-field>
   
       <button mat-raised-button color="primary" [disabled]="messageForm.invalid" type="submit">

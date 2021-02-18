@@ -16,7 +16,7 @@ busy(){
     type: 'line-scale-party',
     size: "large",
     bdColor: "rgba(255, 255, 255, 0)",
-    color: '#c2185b'
+    color: '#7B1FA2'
   })
 }
 

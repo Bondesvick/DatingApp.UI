@@ -6,6 +6,8 @@
 ---------------
 ![pink-theme](https://github.com/Bondesvick/DatingApp.UI/blob/main/pink-theme.png?raw=true)
 ----------------
+![photo editor page](https://github.com/Bondesvick/DatingApp.UI/blob/main/photo-edit.png?raw=true)
+----------------
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.3.
 
